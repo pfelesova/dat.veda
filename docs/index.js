@@ -21,22 +21,22 @@ async function app() {
   // Make a prediction through the model on our image.
   const imgEl = document.getElementById('img');
   const result = await net.predict(preprocessImage(imgEl));
-  const p_cat = result.dataSync()[0];
+  const p_cup = result.dataSync()[0];
   console.log('Prediction done');
 
   // For the assignment, change this
   // YOUR CODE STARTS HERE
  var pred = document.getElementById('pred');
-  if (p_cat < 0.25) {
-      prob = ((1-p_cat)*100).toFixed(2);
+  if (p_cup < 0.25) {
+      prob = ((1-p_cup)*100).toFixed(2);
       pred.innerHTML = "<b>Not Cup cake</b> (probability=".concat(prob, "%)");
   } else {
-    prob = (p_cat*100).toFixed(2);
+    prob = (p_cup*100).toFixed(2);
     pred.innerHTML = "<b>Cup cake</b> (probability=".concat(prob, "%)");
   }
   /// YOUR CODE ENDS HERE
 
-  return(p_choc);
+  return(p_cup);
 }
 
 app();

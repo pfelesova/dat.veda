@@ -21,28 +21,18 @@ async function app() {
   // Make a prediction through the model on our image.
   const imgEl = document.getElementById('img');
   const result = await net.predict(preprocessImage(imgEl));
-  const p_cup = result.dataSync()[0];
-  const p_choc = result.dataSync()[1];
-  const p_churr = result.dataSync()[2];
-  const p_tir = result.dataSync()[3];
+  const p_cat = result.dataSync()[0];
   console.log('Prediction done');
 
   // For the assignment, change this
   // YOUR CODE STARTS HERE
-  var pred = document.getElementById('pred');
-  prob = (max(p_cup, p_choc, p_churr, p_tir)*100).toFixed(2)
-  if (max(p_cup, p_choc, p_churr, p_tir) == p_cup) {
-      prob = ((p_cup)*100).toFixed(2);
-      pred.innerHTML = "<b>Cup_cake</b> (probability=".concat(prob, "%)");
-  } elif (max(p_cup, p_choc, p_churr, p_tir) == p_choc) {
-      prob = ((p_choc)*100).toFixed(2);
-      pred.innerHTML = "<b>Chocolate_cake</b> (probability=".concat(prob, "%)");
-  } elif (max(p_cup, p_choc, p_churr, p_tir) == p_churr) {
-      prob = ((p_churr)*100).toFixed(2);
-      pred.innerHTML = "<b>Churros</b> (probability=".concat(prob, "%)");
+ var pred = document.getElementById('pred');
+  if (p_cat < 0.25) {
+      prob = ((1-p_cat)*100).toFixed(2);
+      pred.innerHTML = "<b>Not Cup cake</b> (probability=".concat(prob, "%)");
   } else {
-    prob = (p_tir*100).toFixed(2);
-    pred.innerHTML = "<b>Tiramisu</b> (probability=".concat(prob, "%)");
+    prob = (p_cat*100).toFixed(2);
+    pred.innerHTML = "<b>Cup cake</b> (probability=".concat(prob, "%)");
   }
   /// YOUR CODE ENDS HERE
 

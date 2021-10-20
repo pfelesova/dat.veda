@@ -13,7 +13,8 @@ async function app() {
   console.log('Loading mobilenet..');
 
   // Load the model.
-  net = await tf.loadLayersModel('https://github.com/pfelesova/dat.veda/tree/main/docs/export_model/model.json');
+  net = await tf.loadLayersModel('https://github.com/pfelesova/dat.veda/main/docs/export_model/model.json');
+  // net = await tf.loadLayersModel('https://github.com/pfelesova/dat.veda/blob/main/docs/export_model/model.json');
   // net = await tf.loadLayersModel('https://raw.githubusercontent.com/pfelesova/datveda/master/docs/model/model.json');
   console.log('Successfully loaded model');
 
